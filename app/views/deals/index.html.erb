@@ -1,5 +1,10 @@
 <h1>Deals</h1>
 
+<%= form_tag deals_path, :method => 'get', :class => 'search' do %>
+  <input type="search" name="search" id="search" value="<%= params[:search] %>">
+  <%= submit_tag "Search" %>
+<% end %>
+
 <table class="table table-striped">
   <thead>
     <tr>
@@ -31,6 +36,8 @@
   <% end %>
   </tbody>
 </table>
+
+<%= paginate(@deals) %>
 
 <br />
 
