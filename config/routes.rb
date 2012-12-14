@@ -3,6 +3,8 @@ DealSite::Application.routes.draw do
     resource :publisher
   end
 
+  get 'deals/page/:page', to: 'deals#index'
+  
   resources :deals do
     resource :advertiser
   end

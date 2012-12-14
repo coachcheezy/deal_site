@@ -12,7 +12,7 @@
   <%= stylesheet_link_tag    "bootstrap", :media => "all" %>
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
-  <%= csrf_meta_tag %>
+  <%= csrf_meta_tag unless @page_caching %>
 
   <link rel="shortcut icon" href="images/favicon.ico">
   <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
@@ -41,24 +41,28 @@
   </div>
 
     <div class="container">
-      <% if flash[:warn].present? %>
-      <div class="row">
-        <div class="span16">
-          <div class="alert-message warning">
-            <p><%= flash[:warn] %></p>
+      <% unless @page_caching %>
+        <% if flash[:warn].present? %>
+        <div class="row">
+          <div class="span16">
+            <div class="alert-message warning">
+              <p><%= flash[:warn] %></p>
+            </div>
           </div>
         </div>
-      </div>
+        <% end %>
       <% end %>
 
-      <% if flash[:notice].present? %>
-      <div class="row">
-        <div class="span16">
-          <div class="alert-message success">
-            <p><%= flash[:notice] %></p>
+      <% unless @page_caching %>
+        <% if flash[:notice].present? %>
+        <div class="row">
+          <div class="span16">
+            <div class="alert-message success">
+              <p><%= flash[:notice] %></p>
+            </div>
           </div>
         </div>
-      </div>
+        <% end %>
       <% end %>
 
 <%= yield %>
